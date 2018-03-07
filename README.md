@@ -2,7 +2,7 @@
 ### Requirements on your server
 
 * mysql or mariadb
-* apache or nginx with php 7
+* apache with php 7
 
 ### Installation
 
