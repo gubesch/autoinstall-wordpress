@@ -1,5 +1,5 @@
 # autoinstall-wordpress
-### Requirements
+### Requirements on your server
 
 * mysql or mariadb
 * apache or nginx with php 7
