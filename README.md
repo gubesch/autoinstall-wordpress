@@ -1,4 +1,9 @@
 # autoinstall-wordpress
+### Requirements
+
+* mysql or mariadb
+* apache or nginx with php 7
+
 ### Installation
 
 Run following commands as root:
