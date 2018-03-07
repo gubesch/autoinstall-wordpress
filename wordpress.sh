@@ -6,8 +6,8 @@ function install_wordpress {
     cd "${1}"
     wget https://wordpress.org/latest.tar.gz
     tar xzf latest.tar.gz
-    chown -R www-data:www-data wordpress
     cp -R wordpress/* .
+    chown -R www-data:www-data .
     PASSWDDB="$(openssl rand -base64 12)"
     echo -n "Enter database name: "
     read MAINDB
