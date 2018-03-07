@@ -19,7 +19,7 @@ function install_wordpress {
     mysql -uroot -p${rootpasswd} -e "FLUSH PRIVILEGES;"
 
     rm latest.tar.gz
-    rm wordpress
+    rm -rf wordpress
 
     ipADDRESS="$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')"
 
