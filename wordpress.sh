@@ -33,6 +33,8 @@ function install_wordpress {
 
     mv wordpress.conf /etc/apache2/sites-available/wordpress.conf
     a2ensite wordpress.conf
+    service apache2 reload
+    
     ipADDRESS="$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')"
 
     echo -e "All your wordpress content is now saved at ${1} !\n"
