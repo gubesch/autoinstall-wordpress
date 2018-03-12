@@ -1,6 +1,6 @@
 #!/bin/bash
 #by Chrisitan Gubesch
-#last updated 3/7/2018
+#last updated 3/12/2018
 
 function install_wordpress {
     cd "${1}"
@@ -11,7 +11,7 @@ function install_wordpress {
     PASSWDDB="$(openssl rand -base64 12)"
     echo -n "Enter database name: "
     read MAINDB
-    echo -n "Please enter root user MySQL password:"
+    echo -ne "\nPlease enter root user MySQL password:"
     read -s rootpasswd
     mysql -uroot -p${rootpasswd} -e "CREATE DATABASE ${MAINDB} DEFAULT CHARACTER SET utf8;"
     mysql -uroot -p${rootpasswd} -e "CREATE USER ${MAINDB}@localhost IDENTIFIED BY '${PASSWDDB}';"
@@ -20,7 +20,19 @@ function install_wordpress {
 
     rm latest.tar.gz
     rm -rf wordpress
+    wget https://raw.githubusercontent.com/gubesch/autoinstall-wordpress/master/wordpress.conf
 
+    echo -ne "\nEnter virtual host server name: "
+    read sName
+    echo -ne "\nEnter admin's e-mail address: "
+    read sAdmin
+
+    sed -i "s/sName/${sName}" wordpress.conf
+    sed -i "s/sAdmin/${sAdmin}" wordpress.conf
+    sed -i "s/dDir/${1}" wordpress.conf
+
+    mv wordpress.conf /etc/apache2/sites-available/wordpress.conf
+    a2ensite wordpress.conf
     ipADDRESS="$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')"
 
     echo -e "All your wordpress content is now saved at ${1} !\n"
@@ -48,5 +60,4 @@ else
     else
         echo -e "\nclosing script"
     fi
-    
 fi
