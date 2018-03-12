@@ -36,7 +36,7 @@ function install_wordpress {
     ipADDRESS="$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')"
 
     echo -e "All your wordpress content is now saved at ${1} !\n"
-    echo "Now go to your browser and open: ${ipADDRESS}"
+    echo "Now go to your browser and open: ${ipADDRESS} or ${sName}"
     echo "Your database name is: ${MAINDB}"
     echo "Your database User-Name is: ${MAINDB}"
     echo "Your password is: ${PASSWDDB}"
