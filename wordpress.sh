@@ -5,7 +5,7 @@
 function install_wordpress {
     cd "${1}"
     wget https://wordpress.org/latest.tar.gz
-    tar xzf latest.tar.gz
+    tar xzf latest.tar.gz > /dev/null 2>&1
     cp -R wordpress/* .
     chown -R www-data:www-data .
     PASSWDDB="$(openssl rand -base64 12)"
