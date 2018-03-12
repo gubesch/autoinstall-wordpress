@@ -11,7 +11,7 @@ function install_wordpress {
     PASSWDDB="$(openssl rand -base64 12)"
     echo -n "Enter database name: "
     read MAINDB
-    echo -e "\nPlease enter root user MySQL password:"
+    echo -en "\nPlease enter root user MySQL password:"
     read -s rootpasswd
     mysql -uroot -p${rootpasswd} -e "CREATE DATABASE ${MAINDB} DEFAULT CHARACTER SET utf8;"
     mysql -uroot -p${rootpasswd} -e "CREATE USER ${MAINDB}@localhost IDENTIFIED BY '${PASSWDDB}';"
@@ -22,9 +22,9 @@ function install_wordpress {
     rm -rf wordpress
     wget https://raw.githubusercontent.com/gubesch/autoinstall-wordpress/master/wordpress.conf
 
-    echo -e "\nEnter virtual host server name: "
+    echo -en "\nEnter virtual host server name: "
     read sName
-    echo -e "\nEnter admin's e-mail address: "
+    echo -en "\nEnter admin's e-mail address: "
     read sAdmin
 
     sed -i "s/sName/${sName}/" wordpress.conf
