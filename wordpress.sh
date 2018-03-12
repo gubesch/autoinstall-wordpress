@@ -44,7 +44,7 @@ function install_wordpress {
 
 
 echo "Welcome to wordpress installation!"
-echo -n "Please enter your wished installation destination: "
+echo -n "Please enter your wished installation destination (as absolute path): "
 read destination
 echo ""
 
