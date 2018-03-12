@@ -27,9 +27,9 @@ function install_wordpress {
     echo -ne "\nEnter admin's e-mail address: "
     read sAdmin
 
-    sed -i "s/sName/${sName}" wordpress.conf
-    sed -i "s/sAdmin/${sAdmin}" wordpress.conf
-    sed -i "s/dDir/${1}" wordpress.conf
+    sed -i "s/sName/${sName}/" wordpress.conf
+    sed -i "s/sAdmin/${sAdmin}/" wordpress.conf
+    sed -i "s/dDir/${1}/" wordpress.conf
 
     mv wordpress.conf /etc/apache2/sites-available/wordpress.conf
     a2ensite wordpress.conf
