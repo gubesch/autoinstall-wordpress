@@ -11,7 +11,7 @@ function install_wordpress {
     PASSWDDB="$(openssl rand -base64 12)"
     echo -n "Enter database name: "
     read MAINDB
-    echo -ne "\nPlease enter root user MySQL password:"
+    echo -e "\nPlease enter root user MySQL password:"
     read -s rootpasswd
     mysql -uroot -p${rootpasswd} -e "CREATE DATABASE ${MAINDB} DEFAULT CHARACTER SET utf8;"
     mysql -uroot -p${rootpasswd} -e "CREATE USER ${MAINDB}@localhost IDENTIFIED BY '${PASSWDDB}';"
@@ -22,14 +22,14 @@ function install_wordpress {
     rm -rf wordpress
     wget https://raw.githubusercontent.com/gubesch/autoinstall-wordpress/master/wordpress.conf
 
-    echo -ne "\nEnter virtual host server name: "
+    echo -e "\nEnter virtual host server name: "
     read sName
-    echo -ne "\nEnter admin's e-mail address: "
+    echo -e "\nEnter admin's e-mail address: "
     read sAdmin
 
     sed -i "s/sName/${sName}/" wordpress.conf
     sed -i "s/sAdmin/${sAdmin}/" wordpress.conf
-    sed -i "s/dDir/${1}/" wordpress.conf
+    sed -i "s:dDir:${1}:" wordpress.conf
 
     mv wordpress.conf /etc/apache2/sites-available/wordpress.conf
     a2ensite wordpress.conf
@@ -37,7 +37,7 @@ function install_wordpress {
     
     ipADDRESS="$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')"
 
-    echo -e "All your wordpress content is now saved at ${1} !\n"
+    echo -e "\n\nAll your wordpress content is now saved at ${1} !\n"
     echo "Now go to your browser and open: ${ipADDRESS} or ${sName}"
     echo "Your database name is: ${MAINDB}"
     echo "Your database User-Name is: ${MAINDB}"
