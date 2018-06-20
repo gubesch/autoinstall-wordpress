@@ -14,4 +14,4 @@ bash wordpress.sh
 ```
 
 
-after executing don't forget to remember your username password and db-name!
+after executing don't forget to remember your username, password and db-name!
